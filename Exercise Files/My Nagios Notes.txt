@@ -1,0 +1,21 @@
+#My Nagios NagiosEnterprises
+sudo systemctl reload nagios
+
+sudo apt-get -y install nagios-nrpe-server nagios-plugins
+
+#Edit
+sudo vi /etc/nagios/nrpe.cfg
+#Add 192.168.50.10 to allowed_hosts
+
+#Restart Nagios Nrpe
+sudo systemctl restart nagios-nrpe-server
+
+
+#Goto the first Nagios server
+sudo apt-get -y install nagios-nrpe-plugin
+sudo cp /usr/lib/nagios/plugins/check_nrpe /usr/local/nagios/libexec/
+
+#Check web server from nagios
+cd /usr/local/nagios/libexec/
+./check_nrpe -H 192.168.50.20
+./check_nrpe -H 192.168.50.20 -c check_users
