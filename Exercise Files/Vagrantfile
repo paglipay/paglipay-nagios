@@ -6,6 +6,13 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
+  config.vm.define "gitlab" do |gitlab|
+    gitlab.vm.network "forwarded_port", guest: 22, host: 2202, host_ip: "0.0.0.0"
+    gitlab.vm.network "forwarded_port", guest: 80, host: 7070, host_ip: "0.0.0.0"
+    gitlab.vm.network "private_network", ip: "192.168.50.10"
+    #gitlab.vm.synced_folder "gitlab/", "/usr/local/gitlab/etc"
+    gitlab.vm.box = "bento/ubuntu-18.04"
+  end
   config.vm.define "nagios" do |nagios|
     nagios.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "0.0.0.0"
     nagios.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "0.0.0.0"
