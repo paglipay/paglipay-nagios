@@ -10,8 +10,8 @@ Vagrant.configure("2") do |config|
     nagios.vm.network "forwarded_port", guest: 22, host: 2222, host_ip: "0.0.0.0"
     nagios.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "0.0.0.0"
     nagios.vm.network "private_network", ip: "192.168.50.10"
-    nagios.vm.synced_folder "nagios/", "/usr/local/nagios/etc"
-    nagios.vm.synced_folder "nagiosgraph/", "/usr/local/nagiosgraph/etc"
+    #nagios.vm.synced_folder "nagios/", "/usr/local/nagios/etc"
+    #nagios.vm.synced_folder "nagiosgraph/", "/usr/local/nagiosgraph/etc"
     nagios.vm.box = "centos/7"
   end
   config.vm.define "web" do |web|
